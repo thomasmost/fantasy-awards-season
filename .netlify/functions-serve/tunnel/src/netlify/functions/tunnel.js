@@ -49174,7 +49174,7 @@ var require_GoogleSpreadsheetWorksheet = __commonJS({
         }
       });
     }
-    var GoogleSpreadsheetWorksheet = class {
+    var GoogleSpreadsheetWorksheet2 = class {
       constructor(parentSpreadsheet, { properties, data }) {
         this._spreadsheet = parentSpreadsheet;
         this._headerRowIndex = 1;
@@ -49697,7 +49697,7 @@ var require_GoogleSpreadsheetWorksheet = __commonJS({
         this.resetLocalCache(true);
       }
     };
-    module2.exports = GoogleSpreadsheetWorksheet;
+    module2.exports = GoogleSpreadsheetWorksheet2;
   },
 });
 
@@ -49707,7 +49707,7 @@ var require_GoogleSpreadsheet = __commonJS({
     var _ = require_lodash();
     var { JWT } = require_src7();
     var Axios = require_axios2();
-    var GoogleSpreadsheetWorksheet = require_GoogleSpreadsheetWorksheet();
+    var GoogleSpreadsheetWorksheet2 = require_GoogleSpreadsheetWorksheet();
     var { getFieldMask } = require_utils3();
     var GOOGLE_AUTH_SCOPES = ["https://www.googleapis.com/auth/spreadsheets"];
     var AUTH_MODES = {
@@ -49878,7 +49878,7 @@ var require_GoogleSpreadsheet = __commonJS({
       _updateOrCreateSheet({ properties, data }) {
         const { sheetId } = properties;
         if (!this._rawSheets[sheetId]) {
-          this._rawSheets[sheetId] = new GoogleSpreadsheetWorksheet(this, {
+          this._rawSheets[sheetId] = new GoogleSpreadsheetWorksheet2(this, {
             properties,
             data,
           });
@@ -50055,12 +50055,12 @@ var require_GoogleSpreadsheet = __commonJS({
 var require_google_spreadsheet = __commonJS({
   "node_modules/google-spreadsheet/index.js"(exports, module2) {
     var GoogleSpreadsheet2 = require_GoogleSpreadsheet();
-    var GoogleSpreadsheetWorksheet = require_GoogleSpreadsheetWorksheet();
+    var GoogleSpreadsheetWorksheet2 = require_GoogleSpreadsheetWorksheet();
     var GoogleSpreadsheetRow = require_GoogleSpreadsheetRow();
     var { GoogleSpreadsheetFormulaError } = require_errors();
     module2.exports = {
       GoogleSpreadsheet: GoogleSpreadsheet2,
-      GoogleSpreadsheetWorksheet,
+      GoogleSpreadsheetWorksheet: GoogleSpreadsheetWorksheet2,
       GoogleSpreadsheetRow,
       GoogleSpreadsheetFormulaError,
     };
@@ -50077,26 +50077,65 @@ import_dotenv.default.config();
 var doc = new import_google_spreadsheet.GoogleSpreadsheet(
   `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
 );
+var playerHeaders = "BCDEFGHIJ";
+var readColumnToPoints = (pointsByVotingBody, headerPrefix) => {
+  const player = pointsByVotingBody.getCellByA1(`${headerPrefix}1`).value;
+  const points = [];
+  for (let i = 2; i < 40; i++) {
+    const AIndex = `${headerPrefix}${i}`;
+    points.push(pointsByVotingBody.getCellByA1(AIndex).value || 0);
+  }
+  return {
+    player,
+    points,
+  };
+};
 var handler = async (event) => {
+  const client_email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const envPrivateKey = process.env.GOOGLE_PRIVATE_KEY;
+  const private_key =
+    envPrivateKey == null ? void 0 : envPrivateKey.replace(/\\n/gm, "\n");
   console.log(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
-  console.log(process.env.GOOGLE_PRIVATE_KEY);
   if (event.httpMethod !== "GET") {
     return {
       statusCode: 400,
       body: JSON.stringify({ error: "invalid http method, expected 'POST'" }),
     };
   }
-  console.log("huzzah");
   await doc.useServiceAccountAuth({
-    client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-    private_key: process.env.GOOGLE_PRIVATE_KEY,
+    client_email,
+    private_key,
   });
   console.log("service account loaded");
-  console.log("(*)");
-  console.log("(*)");
-  console.log("(*)");
+  console.log("*");
+  console.log("*");
+  console.log("*");
   await doc.loadInfo();
-  console.log(doc.title);
+  console.log("Document loaded (huzzah!)");
+  console.log("Doc Title:", doc.title);
+  const pointsByVotingBody = doc.sheetsByIndex[1];
+  console.log("pointsByVotingBody", pointsByVotingBody.title);
+  console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
+  await pointsByVotingBody.loadCells("A1:J39");
+  const votingBodies = [];
+  for (let i = 2; i < 40; i++) {
+    const AIndex = `A${i}`;
+    votingBodies.push(pointsByVotingBody.getCellByA1(AIndex).value);
+  }
+  const playerWinnings = [];
+  for (const header of playerHeaders) {
+    const playerPoints = readColumnToPoints(pointsByVotingBody, header);
+    playerWinnings.push(playerPoints);
+  }
+  console.log(votingBodies);
+  const body = JSON.stringify({
+    votingBodies,
+    playerWinnings,
+  });
+  return {
+    statusCode: 200,
+    body,
+  };
 };
 // Annotate the CommonJS export names for ESM import in node:
 0 &&

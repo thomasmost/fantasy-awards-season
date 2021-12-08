@@ -55,6 +55,7 @@
     ]
   },
   "devDependencies": {
+    "@types/google-spreadsheet": "^3.1.5",
     "husky": "^7.0.4",
     "lint-staged": "^12.1.2",
     "netlify-cli": "^8.0.16",

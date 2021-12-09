@@ -64,35 +64,43 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
       {lines}
 
       <Tooltip
-        snapTooltipToDatumX
         snapTooltipToDatumY
-        showSeriesGlyphs
-        glyphStyle={{
-          fill: "#008561",
-          strokeWidth: 0,
-        }}
-        renderTooltip={({ tooltipData }) => {
+        showDatumGlyph
+        renderTooltip={({ tooltipData, colorScale }) => {
+          if (!colorScale) {
+            return null;
+          }
+          if (!tooltipData) {
+            return null;
+          }
           console.log(tooltipData);
           return (
             <TooltipContainer>
-              {Object.entries(tooltipData?.datumByKey || {}).map(
-                (lineDataArray) => {
-                  const [key, value] = lineDataArray;
+              {[tooltipData?.nearestDatum].map((lineData) => {
+                if (!lineData) {
+                  return null;
+                }
+                const { key, datum } = lineData;
 
-                  return (
-                    <div className="row" key={key}>
-                      <div className="player">{key}</div>
-                      {/* <div className="nada">
+                return (
+                  <div className="row" key={key}>
+                    <div className="player" style={{ marginBottom: "5px" }}>
+                      {key}
+                    </div>
+                    {/* <div className="nada">
                         {accessors.xAccessor(value.datum)}
                       </div> */}
-                      <div className="value" style={{ marginBottom: "10px" }}>
-                        <ColoredSquare color="#008561" />
-                        {accessors.yAccessor(value.datum)}
-                      </div>
+                    <div className="value" style={{ marginBottom: "10px" }}>
+                      <ColoredSquare
+                        color={colorScale(
+                          tooltipData?.nearestDatum?.key as string
+                        )}
+                      />
+                      {accessors.yAccessor(datum)}
                     </div>
-                  );
-                }
-              )}
+                  </div>
+                );
+              })}
             </TooltipContainer>
           );
         }}

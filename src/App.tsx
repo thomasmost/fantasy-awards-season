@@ -1,33 +1,15 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import boy from "./angelboy.png";
 import { Chart } from "./components/Chart";
 import styled from "@emotion/styled";
 import { DataProvider } from "@visx/xychart";
 import { ChartLegend } from "./components/ChartLegend";
 import { useMediaQuery } from "@mui/material";
-
-async function loadData(
-  setData: React.Dispatch<React.SetStateAction<undefined>>,
-  setDisplayDictionary: React.Dispatch<
-    React.SetStateAction<Record<string, boolean>>
-  >
-) {
-  const response = await fetch(".netlify/functions/tunnel");
-  const data = await response.json();
-  const displayDictionary: Record<string, boolean> = {};
-  for (const player of data.playerWinnings) {
-    displayDictionary[player.player] = true;
-  }
-  setData(data);
-  setDisplayDictionary(displayDictionary);
-}
-
-const Header = styled.header`
-  background-position: center;
-  background-repeat: no-repeat;
-  color: #1b4586;
-`;
+import { LoadingGraphic } from "./components/Loading";
+import { Header } from "./components/Header";
+import { useInterval } from "./useInterval";
+import { trashTalk } from "./subtitles";
+import { loadData } from "./loadData";
 
 const Footer = styled.footer`
   background-position: center;
@@ -44,26 +26,9 @@ const Caption = styled.div`
   margin-bottom: 50px;
 `;
 
-const Svg = styled.svg`
-  margin-top: 100px;
-`;
-
-const getRandFromRng = (rng: string[]) => {
-  const optionCount = rng.length;
-  return rng[Math.floor(Math.random() * optionCount)];
-};
-
-const subtitles = [
-  "Let the trash talk commence",
-  "May the odds be ever in Pig's favor",
-  "Clashe of the Titanes",
-  "It's gonna make one helluva (West Side) story",
-  '"Licorice Pizza?!?" I\'ll take five!',
-  "yeah yeah yeah DUNE",
-];
-
 function App() {
   const [data, setData] = useState();
+  const [subtitle, setSubtitle] = useState(trashTalk());
   const [displayDictionary, setDisplayDictionary] = useState<
     Record<string, boolean>
   >({});
@@ -72,6 +37,10 @@ function App() {
   useEffect(() => {
     loadData(setData, setDisplayDictionary);
   }, [setData]);
+
+  useInterval(() => {
+    setSubtitle(trashTalk());
+  }, 10000);
 
   const onToggle = (name: string) => {
     const newDisplayDictionary = { ...displayDictionary };
@@ -86,92 +55,9 @@ function App() {
 
   return (
     <div className="App">
-      <div className="App-header-wrapper-lol">
-        <img src={boy} alt="Fantasy Film Awards" />
-        <Header className="App-header">
-          {/* <h1>Fantasy Film Awards, 2021</h1> */}
-        </Header>
-      </div>
+      <Header />
       <main>
-        {loading && (
-          <Svg
-            width="400"
-            height="400"
-            viewBox="0 0 45 45"
-            xmlns="http://www.w3.org/2000/svg"
-            stroke="#86c6ee"
-          >
-            <g
-              fill="none"
-              fill-rule="evenodd"
-              transform="translate(1 1)"
-              stroke-width="2"
-            >
-              <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                <animate
-                  attributeName="r"
-                  begin="1.5s"
-                  dur="3s"
-                  values="6;22"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="stroke-opacity"
-                  begin="1.5s"
-                  dur="3s"
-                  values="1;0"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="stroke-width"
-                  begin="1.5s"
-                  dur="3s"
-                  values="2;0"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-              </circle>
-              <circle cx="22" cy="22" r="6" stroke-opacity="0">
-                <animate
-                  attributeName="r"
-                  begin="3s"
-                  dur="3s"
-                  values="6;22"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="stroke-opacity"
-                  begin="3s"
-                  dur="3s"
-                  values="1;0"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-                <animate
-                  attributeName="stroke-width"
-                  begin="3s"
-                  dur="3s"
-                  values="2;0"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-              </circle>
-              <circle cx="22" cy="22" r="8">
-                <animate
-                  attributeName="r"
-                  begin="0s"
-                  dur="1.5s"
-                  values="6;1;2;3;4;5;6"
-                  calcMode="linear"
-                  repeatCount="indefinite"
-                />
-              </circle>
-            </g>
-          </Svg>
-        )}
+        {loading && <LoadingGraphic />}
         {!loading && (
           <>
             <Container>
@@ -195,13 +81,12 @@ function App() {
               </DataProvider>
             </Container>
             <Caption>
-              <em>{getRandFromRng(subtitles)}</em>
+              <em>{subtitle}</em>
             </Caption>
-
-            <Footer className="App-header-wrapper-lol" />
           </>
         )}
       </main>
+      <Footer className="App-footer" />
     </div>
   );
 }

@@ -6,7 +6,7 @@ const subtitles = [
   "It's gonna make one helluva (West Side) story",
   '"Licorice Pizza?!?" I\'ll take five!',
   "yeah yeah yeah DUNE",
-  "Kyle can have a little Lamb, as a treat",
+  "Kyle can have a little Lamb, as a treat!",
   "Desert power...",
   "Clifford the Big Red Special Effects Category",
   "Don't Look Up your odds of coming out on top here...",

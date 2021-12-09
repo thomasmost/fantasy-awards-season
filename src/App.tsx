@@ -8,7 +8,7 @@ import { useMediaQuery } from "@mui/material";
 import { LoadingGraphic } from "./components/Loading";
 import { Header } from "./components/Header";
 import { useInterval } from "./useInterval";
-import { trashTalk } from "./subtitles";
+import { trashTalk } from "./trashTalk";
 import { loadData } from "./loadData";
 
 const Footer = styled.footer`

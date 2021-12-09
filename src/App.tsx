@@ -70,10 +70,10 @@ function App() {
           <Caption>
             <em>{getRandFromRng(subtitles)}</em>
           </Caption>
+
+          <Footer className="App-header-wrapper-lol" />
         </>
       )}
-
-      <Footer className="App-header-wrapper-lol" />
     </div>
   );
 }

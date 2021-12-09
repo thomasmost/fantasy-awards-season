@@ -1,5 +1,5 @@
 import { curveMonotoneX } from "@visx/curve";
-import { AnimatedLineSeries, Tooltip } from "@visx/xychart";
+import { AnimatedLineSeries } from "@visx/xychart";
 import { PlayerWinnings } from "../types/PlayerWinnings";
 
 type DataXY = {

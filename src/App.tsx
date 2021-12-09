@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import logo from "./logo.svg";
 import "./App.css";
+import { Chart } from "./components/Chart";
 
 async function loadData(
   setData: React.Dispatch<React.SetStateAction<undefined>>
@@ -17,19 +17,15 @@ function App() {
     loadData(setData);
   }, [setData]);
 
+  const loading = !data;
+
   return (
     <div className="App">
       <header className="App-header">
-        {JSON.stringify(data)}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Fantasy Film Awards, 2021</h1>
       </header>
+
+      {!loading && <Chart data={data} />}
     </div>
   );
 }

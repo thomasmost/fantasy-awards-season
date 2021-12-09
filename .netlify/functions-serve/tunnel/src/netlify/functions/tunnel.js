@@ -50128,6 +50128,21 @@ var handler = async (event) => {
     playerWinnings.push(playerPoints);
   }
   console.log(votingBodies);
+  const numVotingBodies = votingBodies.length;
+  for (let i = 0; i < votingBodies.length; i++) {
+    let allZero = true;
+    for (const player of playerWinnings) {
+      if (player.points[i]) {
+        allZero = false;
+      }
+    }
+    if (allZero) {
+      votingBodies.splice(i, numVotingBodies - i);
+      for (const player of playerWinnings) {
+        player.points.splice(i, numVotingBodies - i);
+      }
+    }
+  }
   const body = JSON.stringify({
     votingBodies,
     playerWinnings,

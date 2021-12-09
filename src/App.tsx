@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Chart } from "./components/Chart";
-import background from "../static/header.png";
 import styled from "@emotion/styled";
 
 async function loadData(
@@ -13,16 +12,39 @@ async function loadData(
 }
 
 const Header = styled.header`
-  background-color: #2975bb;
   background-position: center;
   background-repeat: no-repeat;
   color: #1b4586;
+`;
+
+const Footer = styled.footer`
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60px;
 `;
 
 const Container = styled.div`
   max-width: 1000px;
   margin: auto;
 `;
+
+const Caption = styled.div`
+  margin-bottom: 50px;
+`;
+
+const getRandFromRng = (rng: string[]) => {
+  const optionCount = rng.length;
+  return rng[Math.floor(Math.random() * optionCount)];
+};
+
+const subtitles = [
+  "Let the trash talk commence",
+  "May the odds be ever in Pig's favor",
+  "Clashe of the Titanes",
+  "It's gonna make one helluva (West Side) story",
+  '"Licorice Pizza?!?" I\'ll take five!',
+  "yeah yeah yeah DUNE",
+];
 
 function App() {
   const [data, setData] = useState();
@@ -35,10 +57,23 @@ function App() {
 
   return (
     <div className="App">
-      <Header className="App-header">
-        <h1>Fantasy Film Awards, 2021</h1>
-      </Header>
-      <Container>{!loading && <Chart data={data} />}</Container>
+      <div className="App-header-wrapper-lol">
+        <Header className="App-header">
+          <h1>Fantasy Film Awards, 2021</h1>
+        </Header>
+      </div>
+      {!loading && (
+        <>
+          <Container>
+            <Chart data={data} />
+          </Container>
+          <Caption>
+            <em>{getRandFromRng(subtitles)}</em>
+          </Caption>
+        </>
+      )}
+
+      <Footer className="App-header-wrapper-lol" />
     </div>
   );
 }

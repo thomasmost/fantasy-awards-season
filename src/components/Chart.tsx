@@ -59,7 +59,7 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
   }
   return (
     <XYChart height={600} xScale={{ type: "band" }} yScale={{ type: "linear" }}>
-      <AnimatedAxis orientation="bottom" />
+      <AnimatedAxis orientation="left" />
       <AnimatedGrid columns={false} numTicks={4} />
       {lines}
 
@@ -85,7 +85,7 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
 
                 return (
                   <div className="row" key={key}>
-                    <div className="player" style={{ marginBottom: "5px" }}>
+                    <div className="player" style={{ marginBottom: "10px" }}>
                       {key}
                     </div>
                     {/* <div className="nada">
@@ -98,6 +98,9 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
                         )}
                       />
                       {accessors.yAccessor(datum)}
+                    </div>
+                    <div>
+                      <em>{accessors.xAccessor(datum)}</em>
                     </div>
                   </div>
                 );

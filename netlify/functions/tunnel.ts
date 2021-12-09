@@ -35,7 +35,7 @@ const handler: Handler = async (event) => {
   const envPrivateKey = process.env.GOOGLE_PRIVATE_KEY;
   const private_key = envPrivateKey?.replace(/\\n/gm, "\n");
 
-  console.log(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
+  // console.log(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
   // do not allow GET requests
   if (event.httpMethod !== "GET") {
     return {
@@ -52,19 +52,19 @@ const handler: Handler = async (event) => {
     private_key,
   });
 
-  console.log("service account loaded");
-  console.log("*");
-  console.log("*");
-  console.log("*");
+  // console.log("service account loaded");
+  // console.log("*");
+  // console.log("*");
+  // console.log("*");
 
   await doc.loadInfo(); // loads document properties and worksheets
-  console.log("Document loaded (huzzah!)");
-  console.log("Doc Title:", doc.title);
+  // console.log("Document loaded (huzzah!)");
+  // console.log("Doc Title:", doc.title);
   // const pointTotals = doc.sheetsByIndex[0];
   const pointsByVotingBody = doc.sheetsByIndex[1];
   // console.log('pointTotals', pointTotals.title)
-  console.log("pointsByVotingBody", pointsByVotingBody.title);
-  console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
+  // console.log("pointsByVotingBody", pointsByVotingBody.title);
+  // console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
 
   await pointsByVotingBody.loadCells("A1:J39");
   const votingBodies = [];
@@ -77,7 +77,7 @@ const handler: Handler = async (event) => {
     const playerPoints = readColumnToPoints(pointsByVotingBody, header);
     playerWinnings.push(playerPoints);
   }
-  console.log(votingBodies);
+  // console.log(votingBodies);
 
   const numVotingBodies = votingBodies.length;
   for (let i = 0; i < votingBodies.length; i++) {

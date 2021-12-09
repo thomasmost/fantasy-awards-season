@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import {
   AnimatedAxis, // any of these can be non-animated equivalents
   AnimatedGrid,
@@ -15,6 +16,7 @@ type FantasyData = {
 
 interface ChartProps {
   data: FantasyData;
+  displayDictionary: Record<string, boolean>;
 }
 
 const TooltipContainer = styled.div`
@@ -51,15 +53,39 @@ const ColoredSquare = styled.div`
   border-radius: 4px;
 `;
 
-export const Chart: React.FC<ChartProps> = ({ data }) => {
+export const Chart: React.FC<ChartProps> = ({ data, displayDictionary }) => {
+  const mobile = useMediaQuery("(max-width:600px)");
   const { votingBodies, playerWinnings } = data;
   const lines = [];
   for (const player of playerWinnings) {
-    lines.push(<PlayerLine votingBodies={votingBodies} data={player} />);
+    if (!displayDictionary[player.player]) {
+      lines.push(
+        <PlayerLine
+          key={player.player}
+          hidden
+          votingBodies={votingBodies}
+          data={player}
+        />
+      );
+      continue;
+    }
+    lines.push(
+      <PlayerLine
+        key={player.player}
+        votingBodies={votingBodies}
+        data={player}
+      />
+    );
   }
   return (
-    <XYChart height={600} xScale={{ type: "band" }} yScale={{ type: "linear" }}>
+    <XYChart
+      height={mobile ? 400 : 600}
+      xScale={{ type: "band" }}
+      yScale={{ type: "linear" }}
+    >
       <AnimatedAxis orientation="left" />
+      {/* <AnimatedAxis tickComponent={() => null} orientation="bottom" /> */}
+
       <AnimatedGrid columns={false} numTicks={4} />
       {lines}
 
@@ -74,7 +100,9 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
           if (!tooltipData) {
             return null;
           }
-          console.log(tooltipData);
+          if (!displayDictionary[tooltipData?.nearestDatum?.key || ""]) {
+            return null;
+          }
           return (
             <TooltipContainer>
               {[tooltipData?.nearestDatum].map((lineData) => {

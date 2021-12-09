@@ -9,7 +9,7 @@ type DataXY = {
 
 interface PlayerLineProps {
   data: PlayerWinnings;
-
+  hidden?: boolean;
   votingBodies: string[];
 }
 
@@ -20,6 +20,7 @@ const accessors = {
 
 export const PlayerLine: React.FC<PlayerLineProps> = ({
   data,
+  hidden,
   votingBodies,
 }) => {
   const player = data;
@@ -31,11 +32,22 @@ export const PlayerLine: React.FC<PlayerLineProps> = ({
     total += player.points[i];
     dataPoints.push({
       x: votingBodies[i],
-      y: total,
+      y: hidden ? 0 : total,
     });
   }
   return (
     <AnimatedLineSeries
+      style={
+        hidden
+          ? {
+              transition: ".5s",
+            }
+          : {}
+      }
+      fillOpacity={hidden ? 0 : 1}
+      strokeOpacity={hidden ? 0 : 1}
+      opacity={hidden ? 0 : 1}
+      // visibility={hidden ? 'hidden' : undefined}
       curve={curveMonotoneX}
       dataKey={playerName}
       data={dataPoints}

@@ -13,16 +13,30 @@
   }
 }
 
-.App-header-wrapper-lol {
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-image: url(./heaven.jpg);
-  width: 100%;
+@media screen and (min-width: 800px) {
+  .App-header {
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+  }
+}
+
+.App-header-wrapper-lol img {
+  position: absolute;
+  top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 9;
 }
 
 .App-header {
-  background-image: url(./header.png);
+  background-image: url(./sky.png);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
   /* background-color: #86c6ee; */
   display: flex;
   flex-direction: column;

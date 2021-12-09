@@ -1,4 +1,5 @@
-import { AnimatedLineSeries } from "@visx/xychart";
+import { curveMonotoneX } from "@visx/curve";
+import { AnimatedLineSeries, Tooltip } from "@visx/xychart";
 import { PlayerWinnings } from "../types/PlayerWinnings";
 
 type DataXY = {
@@ -34,6 +35,11 @@ export const PlayerLine: React.FC<PlayerLineProps> = ({
     });
   }
   return (
-    <AnimatedLineSeries dataKey={playerName} data={dataPoints} {...accessors} />
+    <AnimatedLineSeries
+      curve={curveMonotoneX}
+      dataKey={playerName}
+      data={dataPoints}
+      {...accessors}
+    ></AnimatedLineSeries>
   );
 };

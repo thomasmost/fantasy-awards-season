@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Chart } from "./components/Chart";
+import background from "../static/header.png";
+import styled from "@emotion/styled";
 
 async function loadData(
   setData: React.Dispatch<React.SetStateAction<undefined>>
@@ -9,6 +11,18 @@ async function loadData(
   const data = await response.json();
   setData(data);
 }
+
+const Header = styled.header`
+  background-color: #2975bb;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #1b4586;
+`;
+
+const Container = styled.div`
+  max-width: 1000px;
+  margin: auto;
+`;
 
 function App() {
   const [data, setData] = useState();
@@ -21,11 +35,10 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
+      <Header className="App-header">
         <h1>Fantasy Film Awards, 2021</h1>
-      </header>
-
-      {!loading && <Chart data={data} />}
+      </Header>
+      <Container>{!loading && <Chart data={data} />}</Container>
     </div>
   );
 }

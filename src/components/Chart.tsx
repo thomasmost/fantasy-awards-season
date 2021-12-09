@@ -64,6 +64,7 @@ export const Chart: React.FC<ChartProps> = ({ data }) => {
       {lines}
 
       <Tooltip
+        snapTooltipToDatumX
         snapTooltipToDatumY
         showDatumGlyph
         renderTooltip={({ tooltipData, colorScale }) => {

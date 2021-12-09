@@ -14,12 +14,13 @@
 }
 
 .App-header {
-  background-color: #86c6ee;
+  background-image: url(./header.png);
+  /* background-color: #86c6ee; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  height: 200px;
 }
 
 .App-link {

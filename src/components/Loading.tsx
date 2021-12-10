@@ -6,8 +6,8 @@ const Svg = styled.svg`
 
 export const LoadingGraphic = () => (
   <Svg
-    width="400"
-    height="400"
+    width="500"
+    height="500"
     viewBox="0 0 45 45"
     xmlns="http://www.w3.org/2000/svg"
     stroke="#86c6ee"

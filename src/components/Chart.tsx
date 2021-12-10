@@ -79,7 +79,7 @@ export const Chart: React.FC<ChartProps> = ({ data, displayDictionary }) => {
   }
   return (
     <XYChart
-      height={mobile ? 400 : 500}
+      height={mobile ? 360 : 500}
       xScale={{ type: "band" }}
       yScale={{ type: "linear" }}
     >

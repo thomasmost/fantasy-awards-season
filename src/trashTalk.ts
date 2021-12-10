@@ -9,8 +9,12 @@ const subtitles = [
   "Kyle can have a little Lamb, as a treat!",
   "Desert power...",
   "Clifford the Big Red Special Effects Category",
-  "Don't Look Up your odds of coming out on top here...",
+  "Don't Look Up your odds of winning this...",
   "The name's Alley... Nightmare Alley",
+  "tick... tick... Bazinga!",
+  "It's time to take out the trash.",
+  "It's time to take out the trash!",
+  'Think "Free Guy" will walk away with anything?',
 ];
 
 const getRandFromRng = (rng: string[]) => {

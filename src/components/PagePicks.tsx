@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "@emotion/styled";
-import { useMediaQuery } from "@mui/material";
 import ParentSize from "@visx/responsive/lib/components/ParentSize";
 
 import { LoadingGraphic } from "./Loading";
@@ -17,7 +16,6 @@ const Container = styled.div`
 
 export const PagePicks = () => {
   const [data, setData] = useState();
-  const mobile = useMediaQuery("(max-width:800px)");
 
   useEffect(() => {
     loadTopPicks(setData);

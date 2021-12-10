@@ -4,7 +4,6 @@ import { Bar } from "@visx/shape";
 import { scaleLinear, scaleBand } from "@visx/scale";
 import { AxisBottom } from "@visx/axis";
 import { withTooltip, Tooltip, defaultStyles } from "@visx/tooltip";
-import { localPoint } from "@visx/event";
 import { TooltipData } from "@visx/xychart";
 import { WithTooltipProvidedProps } from "@visx/tooltip/lib/enhancers/withTooltip";
 

@@ -5,6 +5,10 @@ import { PageHome } from "./components/PageHome";
 import { Link, Route, Routes } from "react-router-dom";
 import { PagePicks } from "./components/PagePicks";
 
+const Main = styled.main`
+  height: 800px;
+`;
+
 const Footer = styled.footer`
   background-position: center;
   background-repeat: no-repeat;
@@ -14,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <main>
+      <Main>
         <nav>
           <Link to="/">Home</Link>
           <Link to="/picks">Top Picks</Link>
@@ -23,7 +27,7 @@ function App() {
           <Route path="/" element={<PageHome />} />
           <Route path="picks" element={<PagePicks />} />
         </Routes>
-      </main>
+      </Main>
       <Footer className="App-footer" />
     </div>
   );

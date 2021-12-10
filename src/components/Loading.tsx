@@ -1,13 +1,11 @@
 import styled from "@emotion/styled";
 
-const Svg = styled.svg`
-  margin-top: 100px;
-`;
+const Svg = styled.svg``;
 
 export const LoadingGraphic = () => (
   <Svg
-    width="500"
-    height="500"
+    width="400"
+    height="400"
     viewBox="0 0 45 45"
     xmlns="http://www.w3.org/2000/svg"
     stroke="#86c6ee"

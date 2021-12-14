@@ -15,6 +15,9 @@ const subtitles = [
   "It's time to take out the trash.",
   "It's time to take out the trash!",
   'Think "Free Guy" will walk away with anything?',
+  "Baby Annette IS just a baby after all",
+  "BELFAST and the BELFURIOUS!",
+  "You have to be able to... vote for movies... that you hate.",
 ];
 
 const getRandFromRng = (rng: string[]) => {

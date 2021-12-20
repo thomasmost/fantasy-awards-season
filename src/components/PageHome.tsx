@@ -31,7 +31,7 @@ export const PageHome = () => {
   }, [setData]);
 
   useInterval(() => {
-    setSubtitle(trashTalk());
+    setSubtitle(trashTalk(data));
   }, 10000);
 
   const onToggle = (name: string) => {

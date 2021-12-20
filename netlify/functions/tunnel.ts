@@ -17,7 +17,8 @@ const readColumnToPoints = (
   pointsByVotingBody: GoogleSpreadsheetWorksheet,
   headerPrefix: string
 ) => {
-  const player = pointsByVotingBody.getCellByA1(`${headerPrefix}1`).value;
+  const player = pointsByVotingBody.getCellByA1(`${headerPrefix}1`)
+    .value as string;
 
   const points: number[] = [];
   for (let i = 2; i < 40; i++) {
@@ -95,9 +96,15 @@ const handler: Handler = async (event) => {
     }
   }
 
+  const ranking: Record<string, number> = {};
+  for (const player of playerWinnings) {
+    ranking[player.player] = player.points.reduce((x, y) => x + y, 0);
+  }
+
   const body = JSON.stringify({
     votingBodies,
     playerWinnings,
+    ranking,
   });
 
   return {

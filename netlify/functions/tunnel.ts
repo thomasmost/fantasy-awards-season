@@ -12,6 +12,7 @@ const doc = new GoogleSpreadsheet(
 );
 
 const playerHeaders = "BCDEFGHIJ";
+const lastDataRowIndex = 48;
 
 const readColumnToPoints = (
   pointsByVotingBody: GoogleSpreadsheetWorksheet,
@@ -21,7 +22,7 @@ const readColumnToPoints = (
     .value as string;
 
   const points: number[] = [];
-  for (let i = 2; i < 40; i++) {
+  for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `${headerPrefix}${i}`;
     points.push((pointsByVotingBody.getCellByA1(AIndex).value as number) || 0);
   }
@@ -67,9 +68,9 @@ const handler: Handler = async (event) => {
   // console.log("pointsByVotingBody", pointsByVotingBody.title);
   // console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
 
-  await pointsByVotingBody.loadCells("A1:J39");
+  await pointsByVotingBody.loadCells(`A1:J${lastDataRowIndex}`);
   const votingBodies = [];
-  for (let i = 2; i < 40; i++) {
+  for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `A${i}`;
     votingBodies.push(pointsByVotingBody.getCellByA1(AIndex).value);
   }
@@ -81,6 +82,8 @@ const handler: Handler = async (event) => {
   // console.log(votingBodies);
 
   const numVotingBodies = votingBodies.length;
+  // console.log('Num Voting Bodies', votingBodies.length);
+  // console.log('last', JSON.stringify(votingBodies[numVotingBodies - 1]));
   for (let i = 0; i < votingBodies.length; i++) {
     let allZero = true;
     for (const player of playerWinnings) {
@@ -89,6 +92,7 @@ const handler: Handler = async (event) => {
       }
     }
     if (allZero) {
+      // console.log('zero', JSON.stringify(votingBodies[i]));
       votingBodies.splice(i, numVotingBodies - i);
       for (const player of playerWinnings) {
         player.points.splice(i, numVotingBodies - i);

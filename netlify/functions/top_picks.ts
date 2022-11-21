@@ -8,17 +8,17 @@ import {
 dotenv.config();
 
 const doc = new GoogleSpreadsheet(
-  `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
+  `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
 );
 
 const playerByPickSheetIndex: Record<number, string> = {
   2: "Holly",
-  3: "Alexis & Kent",
+  3: "Caitlin",
   4: "Thomas",
   5: "Jimmy",
-  6: "Isabel & Eric",
-  7: "Patrick",
-  8: "Alex",
+  6: "Isabel",
+  7: "Eric",
+  8: "Patrick",
   9: "Andy",
   10: "Kyle",
 };
@@ -82,6 +82,14 @@ const handler: Handler = async (event) => {
   const client_email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
   const envPrivateKey = process.env.GOOGLE_PRIVATE_KEY;
   const private_key = envPrivateKey?.replace(/\\n/gm, "\n");
+  if (!client_email || !private_key) {
+    console.log(
+      "Client email and private key required to load data from Google Sheet"
+    );
+    return {
+      statusCode: 500,
+    };
+  }
 
   // console.log(process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL);
   // do not allow GET requests

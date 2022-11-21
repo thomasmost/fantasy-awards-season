@@ -41,7 +41,7 @@ export const trashTalk = (data?: any) => {
     if (topPlayer) {
       let name = topPlayer.player;
       let parts = name.split(" ");
-      if (name.indexOf("&")) {
+      if (name.indexOf("&") !== -1) {
         name = `${parts[0]} & ${parts[3]}`;
       } else {
         name = parts[0];

@@ -2,6 +2,8 @@
 
 This is a Netlify app with serverless functions that tunnel data from Google Sheets to a simple React frontend
 
+Run `npm run dev` to start both the serverless functions and the client app
+
 _Legacy CRA docs below_
 
 # Getting Started with Create React App

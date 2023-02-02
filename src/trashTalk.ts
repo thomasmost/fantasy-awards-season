@@ -6,11 +6,19 @@ const subtitles = [
   "Every-nom, every-win, all at once!!!",
   `So who's excited for "Avatar: Wakanda Forever"?`,
   `So who's excited for "Black Panther: The Way of Water"?`,
-  "RISE UP, TÁR-NATION!",
+  "What in TÁR-NATION!?",
   `Thomas really went all in on "Babylon," huh?`,
   "Daylight savings time has me operating PRIMARILY Aftersun, amirite??",
   'Think "Sonic 2" will walk away with anything?',
-  `Don't worry Caitlin... you have at least one good movie`,
+  `A lot of people are saying "Babylon" got robbed!!`,
+  `A lot of people are saying "Babylon" should have at least been nominated for Best Picture!!`,
+  `A lot of people are saying "Babylon" should win Best Picture, even after not being nominated!!`,
+  `A lot of people are saying "Babylon" is really good, actually!!`,
+  `Crying, screaming, throwing up (BABYLON, 2022)`,
+  `Crying, screaming, throwing up (BABYLON, 2022)`,
+  `Crying, screaming, throwing up (BABYLON, 2022)`,
+  `The Academy needs to watch "Babylon" again and think about what they've done`,
+  `Crying, screaming, throwing up at the "Babylon" snub`,
 ];
 
 const getRandFromRng = (rng: string[]) => {

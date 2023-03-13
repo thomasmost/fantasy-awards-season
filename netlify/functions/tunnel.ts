@@ -14,7 +14,7 @@ const doc = new GoogleSpreadsheet(
 );
 
 const playerHeaders = "BCDEFGHIJ";
-const lastDataRowIndex = 48;
+const lastDataRowIndex = 51;
 
 const readColumnToPoints = (
   pointsByVotingBody: GoogleSpreadsheetWorksheet,

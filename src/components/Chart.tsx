@@ -57,6 +57,12 @@ export const Chart: React.FC<ChartProps> = ({ data, displayDictionary }) => {
   const mobile = useMediaQuery("(max-width:600px)");
   const { votingBodies, playerWinnings } = data;
   const lines = [];
+
+  votingBodies.unshift("Draft");
+  // add a zero point to each player at the beginning of their data
+  for (const player of playerWinnings) {
+    player.points.unshift(0);
+  }
   for (const player of playerWinnings) {
     if (!displayDictionary[player.player]) {
       lines.push(

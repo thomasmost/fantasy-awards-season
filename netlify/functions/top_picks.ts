@@ -7,20 +7,24 @@ import {
 
 dotenv.config();
 
+// 2022 - `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
+// 2023 - `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
+// 2024 - `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
 const doc = new GoogleSpreadsheet(
-  `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
+  `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
 );
 
 const playerByPickSheetIndex: Record<number, string> = {
-  2: "Holly",
-  3: "Caitlin",
-  4: "Thomas",
-  5: "Jimmy",
-  6: "Isabel",
-  7: "Eric",
+  2: "Caitlin",
+  3: "Holly",
+  4: "Jack",
+  5: "Thomas",
+  6: "Jimmy",
+  7: "Isabel",
   8: "Patrick",
   9: "Andy",
-  10: "Kyle",
+  10: "Eric",
+  11: "Kyle",
 };
 
 type TopScoringPick = {

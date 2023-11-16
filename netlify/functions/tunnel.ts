@@ -8,12 +8,14 @@ import {
 dotenv.config();
 
 // TODO request the old one
-// 11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo
+// 2022 - `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
+// 2023 - `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
+// 2024 - `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
 const doc = new GoogleSpreadsheet(
-  `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
+  `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
 );
 
-const playerHeaders = "BCDEFGHIJ";
+const playerHeaders = "BCDEFGHIJK";
 const lastDataRowIndex = 51;
 
 const readColumnToPoints = (
@@ -78,7 +80,7 @@ const handler: Handler = async (event) => {
   // console.log("pointsByVotingBody", pointsByVotingBody.title);
   // console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
 
-  await pointsByVotingBody.loadCells(`A1:J${lastDataRowIndex}`);
+  await pointsByVotingBody.loadCells(`A1:K${lastDataRowIndex}`);
   const votingBodies = [];
   for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `A${i}`;

@@ -17,16 +17,16 @@ const doc = new GoogleSpreadsheet(
 );
 
 const playerByPickSheetIndex: Record<number, string> = {
-  2: "Caitlin",
-  3: "Holly",
-  4: "Jack",
-  5: "Thomas",
-  6: "Jimmy",
-  7: "Isabel",
-  8: "Patrick",
-  9: "Andy",
-  10: "Eric",
-  11: "Kyle",
+  3: "Caitlin",
+  4: "Holly",
+  5: "Jack",
+  6: "Thomas",
+  7: "Jimmy",
+  8: "Isabel",
+  9: "Patrick",
+  10: "Andy",
+  11: "Eric",
+  12: "Kyle",
 };
 
 type TopScoringPick = {

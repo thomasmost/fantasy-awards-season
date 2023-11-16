@@ -1,0 +1,3 @@
+export const PLAYER_COUNT = 10;
+export const INDEX_FIRST_PLAYER_SHEET = 3;
+export const INDEX_POINTS_BY_VOTING_BODY_SHEET = 1;

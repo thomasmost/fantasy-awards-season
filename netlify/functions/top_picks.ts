@@ -5,6 +5,8 @@ import {
   GoogleSpreadsheetWorksheet,
 } from "google-spreadsheet";
 
+import { INDEX_FIRST_PLAYER_SHEET, PLAYER_COUNT } from "../config";
+
 dotenv.config();
 
 // 2022 - `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
@@ -124,7 +126,11 @@ const handler: Handler = async (event) => {
 
   const pickSheetsByPlayer: Record<string, GoogleSpreadsheetWorksheet> = {};
 
-  for (let i = 2; i < 12; i++) {
+  for (
+    let i = INDEX_FIRST_PLAYER_SHEET;
+    i < PLAYER_COUNT + INDEX_FIRST_PLAYER_SHEET;
+    i++
+  ) {
     const player = playerByPickSheetIndex[i];
     pickSheetsByPlayer[player] = doc.sheetsByIndex[i];
     await pickSheetsByPlayer[player].loadCells("A1:B30");

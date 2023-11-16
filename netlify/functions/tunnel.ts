@@ -4,6 +4,7 @@ import {
   GoogleSpreadsheet,
   GoogleSpreadsheetWorksheet,
 } from "google-spreadsheet";
+import { INDEX_POINTS_BY_VOTING_BODY_SHEET, PLAYER_COUNT } from "../config";
 
 dotenv.config();
 
@@ -15,7 +16,9 @@ const doc = new GoogleSpreadsheet(
   `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
 );
 
-const playerHeaders = "BCDEFGHIJK";
+const allPossiblePlayerHeaders = "BCDEFGHIJKLMNOPQRSTUVWXYZ";
+const playerHeaders = allPossiblePlayerHeaders.slice(0, PLAYER_COUNT);
+const lastHeaderCellLetter = playerHeaders[playerHeaders.length - 1];
 const lastDataRowIndex = 51;
 
 const readColumnToPoints = (
@@ -75,12 +78,15 @@ const handler: Handler = async (event) => {
   // console.log("Document loaded (huzzah!)");
   // console.log("Doc Title:", doc.title);
   // const pointTotals = doc.sheetsByIndex[0];
-  const pointsByVotingBody = doc.sheetsByIndex[1];
+  const pointsByVotingBody =
+    doc.sheetsByIndex[INDEX_POINTS_BY_VOTING_BODY_SHEET];
   // console.log('pointTotals', pointTotals.title)
   // console.log("pointsByVotingBody", pointsByVotingBody.title);
   // console.log("pointsByVotingBody Row Count", pointsByVotingBody.rowCount);
 
-  await pointsByVotingBody.loadCells(`A1:K${lastDataRowIndex}`);
+  await pointsByVotingBody.loadCells(
+    `A1:${lastHeaderCellLetter}${lastDataRowIndex}`
+  );
   const votingBodies = [];
   for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `A${i}`;

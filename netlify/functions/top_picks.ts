@@ -124,7 +124,7 @@ const handler: Handler = async (event) => {
 
   const pickSheetsByPlayer: Record<string, GoogleSpreadsheetWorksheet> = {};
 
-  for (let i = 2; i < 11; i++) {
+  for (let i = 2; i < 12; i++) {
     const player = playerByPickSheetIndex[i];
     pickSheetsByPlayer[player] = doc.sheetsByIndex[i];
     await pickSheetsByPlayer[player].loadCells("A1:B30");

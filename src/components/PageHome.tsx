@@ -26,16 +26,18 @@ export const PageHome = () => {
   >({});
   const mobile = useMediaQuery("(max-width:800px)");
 
+  const talkTrash = () => setSubtitle(trashTalk(data));
+
   useEffect(() => {
     loadData(setData, setDisplayDictionary);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
-        setSubtitle(trashTalk(data));
+        talkTrash();
       }
     };
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setData]);
+  }, [setData, talkTrash]);
 
   useInterval(() => {
     setSubtitle(trashTalk(data));

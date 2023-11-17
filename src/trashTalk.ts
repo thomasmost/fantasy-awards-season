@@ -12,7 +12,7 @@ const getRandFromRng = (rng: string[]) => {
 
 const tauntFirsts = (firstPlace: string) => {
   return [
-    `${firstPlace}, no one is more Nyad than you`,
+    `${firstPlace}, no one is more Nyad than you!`,
     `Okay ${firstPlace}, leave some for the rest of us!`,
   ];
 };

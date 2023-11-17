@@ -28,6 +28,13 @@ export const PageHome = () => {
 
   useEffect(() => {
     loadData(setData, setDisplayDictionary);
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space") {
+        setSubtitle(trashTalk(data));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [setData]);
 
   useInterval(() => {

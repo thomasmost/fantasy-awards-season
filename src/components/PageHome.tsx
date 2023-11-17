@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Chart } from "./Chart";
 import styled from "@emotion/styled";
 import { DataProvider } from "@visx/xychart";
@@ -26,18 +26,20 @@ export const PageHome = () => {
   >({});
   const mobile = useMediaQuery("(max-width:800px)");
 
-  const talkTrash = () => setSubtitle(trashTalk(data));
+  const talkTrash = useCallback(() => setSubtitle(trashTalk(data)), [data]);
 
   useEffect(() => {
-    loadData(setData, setDisplayDictionary);
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === "Space") {
         talkTrash();
       }
     };
-    window.addEventListener("keydown", handleKeyDown);
+    if (!data) {
+      loadData(setData, setDisplayDictionary);
+      window.addEventListener("keydown", handleKeyDown);
+    }
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [setData, talkTrash]);
+  }, [data, setData, talkTrash]);
 
   useInterval(() => {
     setSubtitle(trashTalk(data));

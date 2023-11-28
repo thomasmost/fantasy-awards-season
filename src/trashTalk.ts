@@ -3,6 +3,10 @@ const subtitles = [
   "Now I am Become Death, the Destroyer of Film",
   "You're telling me a Flower Mooned these Killers?",
   "Now I am Become Death, the Destroyer of this League",
+  "Coyote wants money... 😏",
+  "Sheeeeet",
+  "Just one more award show... it's getting more real...",
+  "This is just what grown-ups do (compete in Awards Season Fantasy Leagues)",
 ];
 
 const getRandFromRng = (rng: string[]) => {

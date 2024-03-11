@@ -23,7 +23,8 @@ const lastDataRowIndex = 51;
 
 const readColumnToPoints = (
   pointsByVotingBody: GoogleSpreadsheetWorksheet,
-  headerPrefix: string
+  headerPrefix: string,
+  excludeRows: number[]
 ) => {
   const player = pointsByVotingBody.getCellByA1(`${headerPrefix}1`)
     .value as string;
@@ -31,7 +32,9 @@ const readColumnToPoints = (
   const points: number[] = [];
   for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `${headerPrefix}${i}`;
-    points.push((pointsByVotingBody.getCellByA1(AIndex).value as number) || 0);
+    if (!excludeRows.includes(i)) {
+      points.push((pointsByVotingBody.getCellByA1(AIndex).value as number) || 0);
+    }
   }
   return {
     player,
@@ -87,14 +90,20 @@ const handler: Handler = async (event) => {
   await pointsByVotingBody.loadCells(
     `A1:${lastHeaderCellLetter}${lastDataRowIndex}`
   );
+  let excludeRows = [];
   const votingBodies = [];
   for (let i = 2; i <= lastDataRowIndex; i++) {
     const AIndex = `A${i}`;
+    let votingBody = pointsByVotingBody.getCellByA1(AIndex).value;
+    if (!votingBody) {
+      excludeRows.push(i);
+    } else {
     votingBodies.push(pointsByVotingBody.getCellByA1(AIndex).value);
+    }
   }
   const playerWinnings = [];
   for (const header of playerHeaders) {
-    const playerPoints = readColumnToPoints(pointsByVotingBody, header);
+    const playerPoints = readColumnToPoints(pointsByVotingBody, header, excludeRows);
     playerWinnings.push(playerPoints);
   }
   // console.log(votingBodies);

@@ -2,6 +2,7 @@ const subtitles = [
   "Brutalista",
   "You might be better off learning FileMaker Pro",
   "I told ya",
+  "LET'S GO!",
 ];
 
 const getRandFromRng = (rng: string[]) => {
@@ -11,7 +12,7 @@ const getRandFromRng = (rng: string[]) => {
 
 const tauntFirsts = (firstPlace: string) => {
   return [
-    `${firstPlace}, no one is more Nyad than you!`,
+    `Damn, ${firstPlace} is DEFYING GRAVITY!!!`,
     `Okay ${firstPlace}, leave some for the rest of us!`,
   ];
 };

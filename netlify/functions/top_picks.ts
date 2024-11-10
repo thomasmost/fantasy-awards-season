@@ -12,8 +12,9 @@ dotenv.config();
 // 2022 - `11UJGryQoaei5zAoZPtgwifuvTJp5Sj-7nUSjaXLlnVo`
 // 2023 - `1EsPjE4bNt91qZbf5xafzI9yKd8amUpLL-ZdIJyoo2WM`
 // 2024 - `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
+// 2025 - `12uGUeNxbt4oTiPQLuRBKzweBqFJp9S6S8ZmnmcUg670`
 const doc = new GoogleSpreadsheet(
-  `1XByoxrutVq90cpwgZsvbUvfJAixkrCQAJDe5eqJ2ayU`
+  `12uGUeNxbt4oTiPQLuRBKzweBqFJp9S6S8ZmnmcUg670`
 );
 
 const playerByPickSheetIndex: Record<number, string> = {

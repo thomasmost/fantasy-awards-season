@@ -4,7 +4,7 @@
   "private": true,
   "engines": {
     "node": ">=20",
-    "pnpm": ">=8"
+    "pnpm": ">=9"
   },
   "dependencies": {
     "@emotion/styled": "^11.13.0",

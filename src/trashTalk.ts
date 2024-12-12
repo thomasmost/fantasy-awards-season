@@ -4,8 +4,12 @@ const subtitles = [
   "You gotta get in the dirt Justice something ain't adding up",
   "My Old Ass. That's it, that's the tweet.",
   "You might be better off learning FileMaker Pro",
+  "🎶No Good Movies... Will Jon Chu Do... !🎶",
+  "No one votes for Wicked! (oh no oh wait oh god)",
+  "I hope you're happy!",
   "I told ya",
   "LET'S GO!",
+  "COME ON!",
   "Who else tryna do a Brutalopolis this weekend?",
   "Who else tryna do a Brutalopulance this weekend?",
 ];
@@ -18,6 +22,7 @@ const getRandFromRng = (rng: string[]) => {
 const tauntFirsts = (firstPlace: string) => {
   return [
     `${firstPlace} is DEFYING GRAVITY!!!`,
+    `${firstPlace}, listen, you can still be with the Wizard...`,
     `Okay ${firstPlace}, leave some for the rest of us!`,
   ];
 };

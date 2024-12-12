@@ -12,6 +12,7 @@ const subtitles = [
   "COME ON!",
   "Who else tryna do a Brutalopolis this weekend?",
   "Who else tryna do a Brutalopulance this weekend?",
+  "I heard a rumor that Patrick is on The Substance...",
 ];
 
 const getRandFromRng = (rng: string[]) => {

@@ -13,6 +13,7 @@ const subtitles = [
   "Who else tryna do a Brutalopolis this weekend?",
   "Who else tryna do a Brutalopulance this weekend?",
   "I heard a rumor that Patrick is on The Substance...",
+  "I heard a rumor that Holly is on The Spice...",
 ];
 
 const getRandFromRng = (rng: string[]) => {

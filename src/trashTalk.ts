@@ -21,6 +21,7 @@ const getRandFromRng = (rng: string[]) => {
 
 const tauntFirsts = (firstPlace: string) => {
   return [
+    `I heard a rumor that ${firstPlace} is on The Substance...`,
     `${firstPlace} is DEFYING GRAVITY!!!`,
     `${firstPlace}, listen, you can still be with the Wizard...`,
     `Okay ${firstPlace}, leave some for the rest of us!`,

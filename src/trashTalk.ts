@@ -4,7 +4,7 @@ const subtitles = [
   "You gotta get in the dirt Justice something ain't adding up",
   "My Old Ass. That's it, that's the tweet.",
   "You might be better off learning FileMaker Pro",
-  "🎶No Good Movies... Will Jon Chu Do... !🎶",
+  "🎶 No Good Movies... Will Jon Chu Do... ! 🎶",
   "No one votes for Wicked! (oh no oh wait oh god)",
   "I hope you're happy!",
   "I told ya",

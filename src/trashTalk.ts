@@ -14,7 +14,6 @@ const getRandFromRng = (rng: string[]) => {
 
 const tauntFirsts = (firstPlace: string) => {
   return [
-    `${firstPlace} just had a few small beers...`,
     `${firstPlace} is DEFYING GRAVITY (Part Two)!`,
     `${firstPlace}, you're gonna be golden!`,
     `${firstPlace}, listen, you can still be with the Wizard...`,
@@ -22,14 +21,32 @@ const tauntFirsts = (firstPlace: string) => {
   ];
 };
 
+const tauntLasts = (lastPlace: string) => {
+  return [
+    `${lastPlace} just had a few small beers...`,
+    `${lastPlace}, don't worry, this is just a practice league!`,
+    `Hang in there, ${lastPlace}, all these indie awards were just lulling us into a false sense of security!`,
+    `Cheer up, ${lastPlace}, I think your movies will have a second life on VHS!`,
+  ];
+};
+
 export const trashTalk = (data?: any) => {
+  let trashTalk = subtitles;
   if (data) {
     const { ranking } = data;
     let topPlayer: { player: string; points: number } | null = null;
+    let bottomPlayer: { player: string; points: number } | null = null;
     for (const player of Object.keys(ranking)) {
       if (!topPlayer) {
         topPlayer = { player, points: ranking[player] };
         continue;
+      }
+      if (!bottomPlayer) {
+        bottomPlayer = { player, points: ranking[player] };
+        continue;
+      }
+      if (bottomPlayer.points > ranking[player]) {
+        bottomPlayer = { player, points: ranking[player] };
       }
       if (topPlayer.points < ranking[player]) {
         topPlayer = { player, points: ranking[player] };
@@ -43,8 +60,18 @@ export const trashTalk = (data?: any) => {
       } else {
         name = parts[0];
       }
-      return getRandFromRng(subtitles.concat(tauntFirsts(name)));
+      trashTalk = trashTalk.concat(tauntFirsts(name));
+    }
+    if (bottomPlayer) {
+      let name = bottomPlayer.player;
+      let parts = name.split(" ");
+      if (name.indexOf("&") !== -1) {
+        name = `${parts[0]} & ${parts[3]}`;
+      } else {
+        name =  parts[0];
+      }
+      trashTalk = trashTalk.concat(tauntLasts(name));
     }
   }
-  return getRandFromRng(subtitles);
+  return getRandFromRng(trashTalk);
 };

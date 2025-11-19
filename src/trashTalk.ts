@@ -1,19 +1,10 @@
 const subtitles = [
-  "More like Brutalista",
-  "More like Problemopolis",
-  "You gotta get in the dirt Justice something ain't adding up",
-  "My Old Ass. That's it, that's the tweet.",
-  "You might be better off learning FileMaker Pro",
-  "🎶 No Good Movies... Will Jon Chu Do... ! 🎶",
-  "No one votes for Wicked! (oh no oh wait oh god)",
-  "I hope you're happy!",
-  "I told ya",
-  "LET'S GO!",
-  "COME ON!",
-  "Who else tryna do a Brutalopolis this weekend?",
-  "Who else tryna do a Brutalopulance this weekend?",
-  "I heard a rumor that Patrick is on The Substance...",
-  "I heard a rumor that Holly is on The Spice...",
+  "I think we can all agree we have to beat Eric... for good.",
+  "Bug on Yorgos. Bug on!",
+  "At least we have 'Mopey \"Shakespeare in Love\"'...",
+  "So sweet, so easy on the eyes... but hideous on the inside!",
+  "*googles 'What movies came out this year?'*",
+  "It's okay that you're losing; your team has Sentimental Value"
 ];
 
 const getRandFromRng = (rng: string[]) => {
@@ -23,8 +14,9 @@ const getRandFromRng = (rng: string[]) => {
 
 const tauntFirsts = (firstPlace: string) => {
   return [
-    `I heard a rumor that ${firstPlace} is on The Substance...`,
-    `${firstPlace} is DEFYING GRAVITY!!!`,
+    `${firstPlace} just had a few small beers...`,
+    `${firstPlace} is DEFYING GRAVITY (Part Two)!`,
+    `${firstPlace}, you're gonna be golden!`,
     `${firstPlace}, listen, you can still be with the Wizard...`,
     `Okay ${firstPlace}, leave some for the rest of us!`,
   ];

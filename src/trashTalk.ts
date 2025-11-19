@@ -25,8 +25,8 @@ const tauntLasts = (lastPlace: string) => {
   return [
     `${lastPlace} just had a few small beers...`,
     `${lastPlace}, don't worry, this is just a practice league!`,
-    `Hang in there, ${lastPlace}, all these indie awards were just lulling us into a false sense of security!`,
-    `Cheer up, ${lastPlace}, I think your movies will have a second life on VHS!`,
+    `Hang in there, ${lastPlace}, all these indie awards are just lulling us into a false sense of security!`,
+    `Cheer up ${lastPlace}, I think your movies will have a second life on VHS!`,
   ];
 };
 

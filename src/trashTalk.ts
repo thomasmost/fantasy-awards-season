@@ -43,7 +43,6 @@ export const trashTalk = (data?: any) => {
       }
       if (!bottomPlayer) {
         bottomPlayer = { player, points: ranking[player] };
-        continue;
       }
       if (bottomPlayer.points > ranking[player]) {
         bottomPlayer = { player, points: ranking[player] };
